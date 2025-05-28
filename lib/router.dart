@@ -2,6 +2,7 @@ import 'package:chat_app/common/widgets/error.dart';
 import 'package:chat_app/features/auth/screens/login_screen.dart';
 import 'package:chat_app/features/auth/screens/otp_screen.dart';
 import 'package:chat_app/common/nav_bar.dart';
+import 'package:chat_app/features/screens/chat.dart';
 import 'package:chat_app/features/screens/user_info.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => UserInformationScreen());
     case NavBar.routeName:
       return MaterialPageRoute(builder: (context) => NavBar());
+    case ChatScreen.routeName:
+      return MaterialPageRoute(builder: (context) => ChatScreen());
     default:
       return MaterialPageRoute(
           builder: (context) => Scaffold(

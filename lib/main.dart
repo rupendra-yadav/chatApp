@@ -24,6 +24,9 @@ class MyApp extends StatelessWidget {
         title: 'ChatApp',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
+            bottomSheetTheme: BottomSheetThemeData(
+              backgroundColor: Colors.white,
+            ),
             scaffoldBackgroundColor: backgroundColor,
             appBarTheme: const AppBarTheme(
               color: backgroundColor,

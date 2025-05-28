@@ -1,5 +1,6 @@
 import 'package:chat_app/common/widgets/custom_button.dart';
 import 'package:chat_app/common/widgets/profile_image.dart';
+import 'package:chat_app/features/screens/chat.dart';
 import 'package:chat_app/utils/colors.dart';
 import 'package:chat_app/utils/info.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,9 @@ class Chats extends StatelessWidget {
               return Column(
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ChatScreen.routeName);
+                    },
                     child: ListTile(
                       leading: ProfileImage(
                           imageUrl: info[index]['profilePic'].toString()),
