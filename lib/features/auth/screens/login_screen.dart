@@ -38,16 +38,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   void sendPhoneNumber() {
-    String phoneNumber = phoneController.text.trim();
+    String phoneNumber = phoneController.text;
     if (country != null && phoneNumber.isNotEmpty) {
       ref
           .read(authControllerProvider)
           .signInWithPhone(context, '+${country!.phoneCode}$phoneNumber');
 
-      print("Hitting or");
       // just for exerimental purpose i need to remove it later
-      Navigator.pushNamedAndRemoveUntil(
-          context, OTPScreen.routeName, (route) => false);
     } else {
       showSnackBar(context: context, content: 'Fill all the parameters');
     }
@@ -57,11 +54,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Enter your phone number"),
-        centerTitle: true,
-        elevation: 1,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(
@@ -73,6 +65,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 SizedBox(
                   height: 50,
                 ),
+                Text(
+                  "Enter your phone number",
+                  style: TextStyle(
+                    fontSize: 24,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Center(
                   child: Text(
                     "Whatsapp will need to verify your number.",
@@ -82,7 +83,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(),
+                // SizedBox(),
                 TextButton(
                     onPressed: () => pickCountry(),
                     child: Text(
@@ -114,7 +115,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
             SizedBox(
               width: 120,
-              child: CustomButton(text: "Verify", onPressed: sendPhoneNumber),
+              child: CustomButton(
+                  text: "Verify", onPressed: () => sendPhoneNumber()),
             )
           ],
         ),

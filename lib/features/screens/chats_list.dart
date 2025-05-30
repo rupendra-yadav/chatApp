@@ -6,6 +6,7 @@ import 'package:chat_app/utils/info.dart';
 import 'package:flutter/material.dart';
 
 class Chats extends StatelessWidget {
+  static const String routeName = '/chats';
   const Chats({super.key});
 
   @override

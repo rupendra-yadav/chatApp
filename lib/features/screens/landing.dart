@@ -1,8 +1,8 @@
 import 'package:chat_app/common/widgets/custom_button.dart';
 import 'package:chat_app/common/widgets/language_selector.dart';
 import 'package:chat_app/features/auth/screens/login_screen.dart';
-import 'package:chat_app/common/nav_bar.dart';
-import 'package:chat_app/features/screens/user_info.dart';
+import 'package:chat_app/features/screens/chat.dart';
+import 'package:chat_app/features/screens/chats_list.dart';
 import 'package:chat_app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +11,7 @@ class LandingScreen extends StatelessWidget {
 
   void navigateToLoginScreen(BuildContext context) {
     //fix for later
-    // Navigator.pushNamed(context, LoginScreen.routeName);
-    // Navigator.pushNamed(context, UserInformationScreen.routeName);
-    Navigator.pushNamedAndRemoveUntil(
-        context, NavBar.routeName, (val) => false);
+    Navigator.pushNamed(context, LoginScreen.routeName);
   }
 
   @override

@@ -22,46 +22,26 @@ class AuthRepository {
     required this.firestore,
   });
 
-  void signInWithPhone(BuildContext context, String phoneNumber,
-      bool isDevelopmentBypassEnabled) async {
-    // const bool isDevelopmentBypassEnabled = true;
-    if (isDevelopmentBypassEnabled) {
-      print("Development bypass enabled. Simulating successful phone sign-in.");
-
-      // You might want to store a fake user ID or state here
-
-      // For simplicity, let's just navigate immediately as if successful
-
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-
-        // Replace '/home-screen' with the actual route name of your first screen after login
-
-        OTPScreen.routeName,
-
-        (route) => false, // Remove all previous routes
-      );
-    } else {
-      try {
-        await auth.verifyPhoneNumber(
-            phoneNumber: phoneNumber,
-            verificationCompleted: (PhoneAuthCredential Credential) async {
-              await auth.signInWithCredential(Credential);
-            },
-            verificationFailed: (FirebaseAuthException e) {
-              throw Exception(e.message);
-            },
-            codeSent: (String verificationId, int? resendToken) async {
-              Navigator.pushNamed(
-                context,
-                OTPScreen.routeName,
-                arguments: verificationId,
-              );
-            },
-            codeAutoRetrievalTimeout: (String verificationId) {});
-      } on FirebaseAuthException catch (e) {
-        showSnackBar(context: context, content: e.toString());
-      }
+  void signInWithPhone(BuildContext context, String phoneNumber) async {
+    try {
+      await auth.verifyPhoneNumber(
+          phoneNumber: phoneNumber,
+          verificationCompleted: (PhoneAuthCredential Credential) async {
+            await auth.signInWithCredential(Credential);
+          },
+          verificationFailed: (FirebaseAuthException e) {
+            throw Exception(e.message);
+          },
+          codeSent: (String verificationId, int? resendToken) async {
+            Navigator.pushNamed(
+              context,
+              OTPScreen.routeName,
+              arguments: verificationId,
+            );
+          },
+          codeAutoRetrievalTimeout: (String verificationId) {});
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context: context, content: e.toString());
     }
   }
 

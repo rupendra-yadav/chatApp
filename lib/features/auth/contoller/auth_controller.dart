@@ -15,6 +15,6 @@ class AuthController {
   });
 
   void signInWithPhone(BuildContext context, String phoneNumber) {
-    authRepository.signInWithPhone(context, phoneNumber, true);
+    authRepository.signInWithPhone(context, phoneNumber);
   }
 }
