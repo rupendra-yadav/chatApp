@@ -1,5 +1,6 @@
 import 'package:chat_app/common/widgets/custom_button.dart';
 import 'package:chat_app/features/auth/contoller/auth_controller.dart';
+import 'package:chat_app/features/auth/screens/email_pw.dart';
 import 'package:chat_app/features/auth/screens/otp_screen.dart';
 import 'package:chat_app/utils/utils.dart';
 import 'package:country_picker/country_picker.dart';
@@ -15,7 +16,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final phoneController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   Country? country;
 
   @override
@@ -75,12 +76,22 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   height: 20,
                 ),
                 Center(
-                  child: Text(
-                    "Whatsapp will need to verify your number.",
-                    textAlign: TextAlign.justify,
-                    style: TextStyle(
-                      fontSize: 14,
-                    ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Want to use other methods of login.",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                          fontSize: 14,
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, EmailPwScreen.routeName);
+                          },
+                          child: Text("Email?"))
+                    ],
                   ),
                 ),
                 // SizedBox(),

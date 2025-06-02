@@ -1,4 +1,5 @@
 import 'package:chat_app/common/widgets/error.dart';
+import 'package:chat_app/features/auth/screens/email_pw.dart';
 import 'package:chat_app/features/auth/screens/login_screen.dart';
 import 'package:chat_app/features/auth/screens/otp_screen.dart';
 import 'package:chat_app/common/nav_bar.dart';
@@ -11,6 +12,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case LoginScreen.routeName:
       return MaterialPageRoute(builder: (context) => LoginScreen());
+
+    case EmailPwScreen.routeName:
+      return MaterialPageRoute(builder: (context) => EmailPwScreen());
     case OTPScreen.routeName:
       final verificationId = settings.arguments as String;
       return MaterialPageRoute(

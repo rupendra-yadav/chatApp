@@ -17,4 +17,9 @@ class AuthController {
   void signInWithPhone(BuildContext context, String phoneNumber) {
     authRepository.signInWithPhone(context, phoneNumber);
   }
+
+  void signInWithEmailAndPassword(
+      BuildContext context, String email, String password) {
+    authRepository.signInWithCredential(context, email, password);
+  }
 }

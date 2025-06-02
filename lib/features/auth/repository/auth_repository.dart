@@ -22,6 +22,24 @@ class AuthRepository {
     required this.firestore,
   });
 
+  void signInWithCredential(
+      BuildContext context, String email, String password) async {
+    try {
+      final credential = await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      if (credential != null) {
+        final result = await auth.signInWithEmailAndPassword(
+            email: email, password: password);
+        if (result == '200') {
+          Navigator.pushNamedAndRemoveUntil(
+              context, UserInformationScreen.routeName, (route) => false);
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context: context, content: e.toString());
+    }
+  }
+
   void signInWithPhone(BuildContext context, String phoneNumber) async {
     try {
       await auth.verifyPhoneNumber(
